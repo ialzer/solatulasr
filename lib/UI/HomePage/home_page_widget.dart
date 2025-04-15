@@ -28,9 +28,7 @@ class HomePageWidget extends StatelessWidget {
 }
 
 class IconsMenuWidget extends StatelessWidget {
-  const IconsMenuWidget({
-    super.key,
-  });
+  const IconsMenuWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,21 +57,16 @@ class IconsMenuWidget extends StatelessWidget {
             child: GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 10,
-                  ),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 10,
+              ),
               itemCount: 6,
               itemBuilder: (context, index) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(
-                      Icons.widgets,
-                      color: Colors.white,
-                      size: 40,
-                    ),
+                    Icon(Icons.widgets, color: Colors.white, size: 40),
                     const SizedBox(height: 5),
                     Text(
                       'Item ${index + 1}',

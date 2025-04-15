@@ -11,25 +11,19 @@ class GeneralWidgets extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.blue, // Replace with a solid color
         items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label: 'Home',
+            icon: Icon(Icons.settings),
+            label: 'Settings',
           ),
           BottomNavigationBarItem(
-        icon: Icon(Icons.search),
-        label: 'Search',
+            icon: Icon(Icons.settings),
+            label: 'Settings',
           ),
           BottomNavigationBarItem(
-        icon: Icon(Icons.settings),
-        label: 'Settings',
-          ),
-          BottomNavigationBarItem(
-        icon: Icon(Icons.settings),
-        label: 'Settings',
-          ),
-          BottomNavigationBarItem(
-        icon: Icon(Icons.settings),
-        label: 'Settings',
+            icon: Icon(Icons.settings),
+            label: 'Settings',
           ),
         ],
         onTap: (index) {
