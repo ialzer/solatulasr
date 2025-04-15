@@ -13,6 +13,7 @@ void main() {
       systemStatusBarContrastEnforced: true,
     ),
   );
+  var a = 1;
   runApp(const MyApp());
 }
 
