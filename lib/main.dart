@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:solatulasr/UI/general_widgets.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.blue,
-      statusBarIconBrightness: Brightness.light,
-      systemStatusBarContrastEnforced: true,
-    ),
-  );
+
   runApp(const MyApp());
 }
 
@@ -24,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData.light(),
       routes: {'/home': (context) => GeneralWidgets()},
-      home: const GeneralWidgets(),
+      home: GeneralWidgets(),
     );
   }
 }
