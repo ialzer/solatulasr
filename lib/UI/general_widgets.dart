@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:solatulasr/Domain/images_app.dart';
 import 'package:solatulasr/UI/HomePage/home_page_widget.dart';
@@ -14,11 +15,45 @@ class CustomBottomNavBarStateController extends GetxController {
   }
 }
 
-class GeneralWidgets extends StatelessWidget {
-  GeneralWidgets({super.key});
+class GeneralWidgets extends StatefulWidget {
+  const GeneralWidgets({super.key});
+
+  @override
+  State<GeneralWidgets> createState() => _GeneralWidgetsState();
+}
+
+class _GeneralWidgetsState extends State<GeneralWidgets> {
   final CustomBottomNavBarStateController controller = Get.put(
     CustomBottomNavBarStateController(),
   );
+
+  @override
+  void initState() {
+    super.initState();
+    initLocation();
+  }
+
+  void initLocation() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      print("Службы геолокации отключены");
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      print("Разрешение навсегда отклонено");
+    }
+
+    Position position = await Geolocator.getCurrentPosition();
+    print(
+      "Текущее местоположение: ${position.latitude}, ${position.longitude}",
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     int itemCount = 5;
