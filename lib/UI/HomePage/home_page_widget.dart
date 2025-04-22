@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:solatulasr/Domain/images_app.dart';
 import 'package:solatulasr/UI/HomePage/background_widget.dart';
 import 'package:solatulasr/UI/HomePage/icons_menu_widget.dart';
 import 'package:solatulasr/UI/HomePage/mosque_list_widget.dart';
@@ -17,9 +19,7 @@ class HomePageWidget extends StatelessWidget {
           Stack(
             children: [
               BackgroundWidget(),
-
               SearchWidget(),
-
               SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),

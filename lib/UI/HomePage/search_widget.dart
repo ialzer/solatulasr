@@ -10,27 +10,25 @@ class SearchWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15.0, left: 15, right: 15),
       child: Stack(
         children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withAlpha((0.3 * 255).toInt()),
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.white, width: 1),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withAlpha((0.1 * 255).toInt()),
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: SizedBox(width: double.infinity, height: 25),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha((0.3 * 255).toInt()),
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.white, width: 1),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withAlpha((0.1 * 255).toInt()),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
                 ),
+                child: SizedBox(width: double.infinity, height: 25),
               ),
             ),
           ),

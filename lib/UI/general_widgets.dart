@@ -84,11 +84,18 @@ class _GeneralWidgetsState extends State<GeneralWidgets> {
       builder:
           (_) => Scaffold(
             body: pages[controller.selectedIndex],
-            bottomNavigationBar: CustomBottomNavBar.items(
-              controller.selectedIndex,
-              icons,
-              titles,
-              itemCount,
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.only(
+                left: 10.0,
+                right: 10.0,
+                bottom: 15.0,
+              ),
+              child: CustomBottomNavBar.items(
+                controller.selectedIndex,
+                icons,
+                titles,
+                itemCount,
+              ),
             ),
           ),
     );
@@ -102,68 +109,69 @@ class CustomBottomNavBar {
     List<String> titles,
     int itemCount,
   ) {
-    return Card(
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.lightBlueAccent,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withAlpha((0.1 * 255).toInt()),
-              blurRadius: 10,
-              offset: const Offset(0, 5),
-            ),
-          ],
-        ),
-        height: 60,
-        child: Row(
-          children: List.generate(itemCount, (index) {
-            if (index == selectedIndex) {
-              return Expanded(
-                flex: 4,
-                child: InkWell(
-                  onTap:
-                      () => Get.find<CustomBottomNavBarStateController>()
-                          .changeIndex(index),
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 10,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            icons[index],
-                            color: Colors.lightBlue,
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            titles[index],
-                            style: TextStyle(color: Colors.lightBlue),
-                          ),
-                        ],
+    return Stack(
+      children: [
+        Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+          height: 60,
+          child: Row(
+            children: List.generate(itemCount, (index) {
+              if (index == selectedIndex) {
+                return Expanded(
+                  flex: 4,
+                  child: InkWell(
+                    onTap:
+                        () => Get.find<CustomBottomNavBarStateController>()
+                            .changeIndex(index),
+                    child: Card(
+                      color: Colors.lightBlue,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 12.0,
+                          horizontal: 10,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(icons[index], color: Colors.white),
+                            SizedBox(width: 10),
+                            Text(
+                              titles[index],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
+                );
+              }
+              return Expanded(
+                flex: 2,
+                child: InkWell(
+                  focusColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  highlightColor: Colors.transparent,
+
+                  onTap:
+                      () => Get.find<CustomBottomNavBarStateController>()
+                          .changeIndex(index),
+
+                  child: SvgPicture.asset(
+                    icons[index],
+                    color: Colors.lightBlue,
+                  ),
                 ),
               );
-            }
-            return Expanded(
-              flex: 2,
-              child: InkWell(
-                onTap:
-                    () => Get.find<CustomBottomNavBarStateController>()
-                        .changeIndex(index),
-
-                child: SvgPicture.asset(icons[index], color: Colors.white),
-              ),
-            );
-          }),
+            }),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

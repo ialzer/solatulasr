@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:solatulasr/Domain/images_app.dart';
@@ -13,7 +12,7 @@ class BackgroundWidget extends StatelessWidget {
         Stack(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.62,
+              height: MediaQuery.of(context).size.height * 0.61,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
