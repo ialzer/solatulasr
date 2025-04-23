@@ -1,11 +1,55 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class TimeWidgetStateController extends GetxController {
+  DateTime now = DateTime.now().toUtc().add(const Duration(hours: 5));
+
+  late List<DateTime> getTimesList;
+
+  TimeWidgetStateController() {
+    getTimesList = [
+      DateTime(now.year, now.month, now.day, 4, 5),
+      DateTime(now.year, now.month, now.day, 5, 31),
+      DateTime(now.year, now.month, now.day, 12, 21),
+      DateTime(now.year, now.month, now.day, 17, 10),
+      DateTime(now.year, now.month, now.day, 19, 16),
+      DateTime(now.year, now.month, now.day, 20, 34),
+    ];
+  }
+
+  Duration getCountdownToNextTime() {
+    print(DateTime.now().timeZoneName);
+    for (DateTime time in getTimesList) {
+      if (now.isBefore(time)) {
+        return time.difference(now);
+      }
+    }
+
+    return Duration.zero;
+  }
+
+  String printCountdown() {
+    Duration countdown = getCountdownToNextTime();
+
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    String hours = twoDigits(countdown.inHours);
+    String minutes = twoDigits(countdown.inMinutes.remainder(60));
+    String seconds = twoDigits(countdown.inSeconds.remainder(60));
+
+    return '$hours:$minutes:$seconds';
+  }
+}
 
 class TimeWidget extends StatelessWidget {
   const TimeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final TimeWidgetStateController controller = Get.put(
+      TimeWidgetStateController(),
+    );
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: BackdropFilter(
@@ -36,14 +80,15 @@ class TimeWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Text(
-                '17:32:18',
-                style: TextStyle(
+              Text(
+                controller.printCountdown(),
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
+
               const SizedBox(height: 5),
               const Text(
                 'Keyingi ibodat: Shom',
