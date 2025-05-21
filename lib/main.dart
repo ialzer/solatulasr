@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:solatulasr/UI/general_widgets.dart';
+import 'package:solatulasr/UI/main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData.light(),
-      routes: {'/home': (context) => GeneralWidgets()},
-      home: GeneralWidgets(),
+      routes: {'/': (context) => MainPage()},
+      initialRoute: '/',
     );
   }
 }
